@@ -20,4 +20,4 @@ var locationOptions = const LocationSettings(
     accuracy: LocationAccuracy.bestForNavigation, distanceFilter: 4);
 var lac=LocationAccuracy.bestForNavigation;
 String mapKey = "<YOUR MAP KEY>";
-String token='Key=AAAAJHSdj9g:APA91bG47p2eQE68nHqCuIxSvpUszyLnrhRw4TC78DILcZInnCblyFA5Mx0FHMPFPfYvoSe0RhiyE93ivSwtSEB4cVpcwuK6clpoeNSr2jbb7lAMr7bQhudpJZFfVgaEP5T0RqLluG59';
+String token='<FIREBASE CLOUD MESSAGING KEY>';
