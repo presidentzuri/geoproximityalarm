@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:geoproxyalarm/providers/appdata.dart';
 import 'package:geoproxyalarm/screens/Notificationscreen.dart';
 import 'package:geoproxyalarm/screens/mytracklist.dart';
 import 'package:geoproxyalarm/screens/trackingme.dart';
@@ -31,7 +32,7 @@ class _AppDrawerState extends State<AppDrawer> {
   }
   @override
   Widget build(BuildContext context) {
-
+  String? name=Provider.of<AppData>(context).currentuserInfo?.email?.split('@')[0];
     return Container(
       width:300,
       color: Colors.white,
@@ -50,8 +51,8 @@ class _AppDrawerState extends State<AppDrawer> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text((toBeginningOfSentenceCase(('test name'))!.split(' ')[0]==null)?'Loading':
-                        toBeginningOfSentenceCase(('test name'))!.split(' ')[0],
+                        Text((toBeginningOfSentenceCase((name))!.split(' ')[0]==null)?'Loading':
+                        toBeginningOfSentenceCase((name))!.split(' ')[0],
                           style: TextStyle(fontSize: 20,fontFamily: 'Brand-Bold'),),
                         SizedBox(height: 5,),
                         GestureDetector(
