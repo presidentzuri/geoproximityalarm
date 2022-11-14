@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "156575305688",
+    "firebase_url": "https://geoproximityalarm-default-rtdb.firebaseio.com",
+    "project_id": "geoproximityalarm",
+    "storage_bucket": "geoproximityalarm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156575305688:android:6be6456a27e9a6c5376cad",
+        "android_client_info": {
+          "package_name": "com.geoproxyalarm.notify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156575305688-5i9ddf20lc3a2vk481j6e4f2upk2mqee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCFTG-FOKhaqUy1l-BInpN5PQ6LftjGmc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156575305688-5i9ddf20lc3a2vk481j6e4f2upk2mqee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156575305688:android:7a729283256f3d9a376cad",
+        "android_client_info": {
+          "package_name": "com.geoproxyalarm.notify.geoproxyalarm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156575305688-5i9ddf20lc3a2vk481j6e4f2upk2mqee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCFTG-FOKhaqUy1l-BInpN5PQ6LftjGmc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156575305688-5i9ddf20lc3a2vk481j6e4f2upk2mqee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
