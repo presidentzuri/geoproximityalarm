@@ -420,13 +420,25 @@ class _MyHomePageState extends State<MyHomePage> {
     print('the distance ${Provider.of<AppData>(context, listen: false).trackmeListDetailed?.length}');
     await Future.forEach(Provider.of<AppData>(context, listen: false).trackmeListDetailed!, (MyTrackUser element)async {
       num x= HelperMethods.calculateDistance(currentPosition!, element);
+      int? timeDiff;
       print('the distance $x');
-      //if distance meets up with fence
-      if(x.toDouble()<=element.distance!.toDouble()){
+      if(element.sendtime!=null){
+        timeDiff=DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(int.parse(element.sendtime!))).inMinutes;
+      }
+      //if distance meets up with fence and the last time sent is more than
+      //10 minutes then send a notification
+      if(x.toDouble()<=element.distance!.toDouble() && (timeDiff!>10)){
+
+       int y= Provider.of<AppData>(context, listen: false).trackmeListDetailed!.indexWhere((data) => data.id==element.id);
+        if(y>=0){
+          Provider.of<AppData>(context, listen: false).trackmeListDetailed![y].sendtime=DateTime.now().millisecondsSinceEpoch.toString();
+        }
+
         //send alarm notification to all users meeting this criteria
-        await _firestore.collection('users').doc(element.tracker_id).get().then((value) {
+        await _firestore.collection('users').doc(element.tracker_id).get().then((value)async {
           if(value.exists){
-            sendPushNotification(value.get('token'), element.id!);
+           await sendPushNotification(value.get('token'), element.id!);
+           await _firestore.collection('mytrack').doc(element.id).update({'send_time':DateTime.now().millisecondsSinceEpoch.toString()});
           }
 
         });
@@ -484,7 +496,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'via': 'FlutterFire Cloud Messaging!!!',
         'trackid': docid,
         'count': _messageCount.toString(),
-        'status': 'done'
+        'status': 'alarm'
       },
       "to": "${token}"
     });

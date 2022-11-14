@@ -8,10 +8,10 @@ import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 
 import '../globalvariables.dart';
 
-class NotificationDialogManual extends StatelessWidget {
+class AlarmDialogManual extends StatelessWidget {
   final MyTrackUser trackinfo;
 
-  NotificationDialogManual(this.trackinfo);
+  AlarmDialogManual(this.trackinfo);
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -39,7 +39,7 @@ class NotificationDialogManual extends StatelessWidget {
               height: 16.0,
             ),
             Text(
-              'NEW TRACK REQUEST',
+              'PROXIMITY ALARM',
               style: TextStyle(fontFamily: 'Brand-Bold', fontSize: 13),
             ),
             SizedBox(
@@ -151,10 +151,9 @@ class NotificationDialogManual extends StatelessWidget {
                   Expanded(
                     child: IconsOutlineButton(
                       onPressed: () {
-                        //assetAudioPlayer?.stop();
-                        declineRequest(context);
+                          Navigator.pop(context);
                       },
-                      text: 'Decline',
+                      text: 'Close',
                       iconData: Icons.cancel_outlined,
                       textStyle: TextStyle(color: Colors.grey),
                       iconColor: Colors.grey,
@@ -166,10 +165,9 @@ class NotificationDialogManual extends StatelessWidget {
                   Expanded(
                     child: IconsButton(
                       onPressed: () async {
-                        //assetAudioPlayer?.stop();
-                        acceptFireStore(context);
+                        Navigator.pop(context);
                       },
-                      text: 'Accept',
+                      text: 'Noted',
                       iconData: Icons.check,
                       color: Colors.green,
                       textStyle: TextStyle(color: Colors.white),
@@ -188,31 +186,6 @@ class NotificationDialogManual extends StatelessWidget {
     );
   }
 
-  void declineRequest(context) async {
-    String orderId = trackinfo.id!;
-    await FirebaseFirestore.instance
-        .collection('mytrack')
-        .doc(orderId)
-        .get()
-        .then((value) {
-      if (!value.exists) {
-        Fluttertoast.showToast(
-            msg: 'Request no longer available',
-            textColor: Colors.white,
-            backgroundColor: Colors.redAccent);
-        return;
-      }
-    });
-    await FirebaseFirestore.instance.collection('mytrack').doc(orderId).update({
-      'acceptance_status': 'rejected',
-    }).onError((error, stackTrace) {
-      Fluttertoast.showToast(
-          msg: 'Couldn\'t update details',
-          textColor: Colors.white,
-          backgroundColor: Colors.redAccent);
-    });
-    Navigator.pop(context);
-  }
 
   acceptFireStore(context) async {
     if(trackinfo.status == 'accepted'){

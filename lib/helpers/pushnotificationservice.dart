@@ -8,6 +8,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:geoproxyalarm/globalvariables.dart';
 import 'package:geoproxyalarm/helpers/helpermethods.dart';
+import 'package:geoproxyalarm/widgets/alarmdialogue.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/appdata.dart';
@@ -78,13 +79,21 @@ class PushNotificationService {
         ));
         */
          String? trackid=data['trackid'];
-        if(trackid!=null){
+         String? status=data['status'];
+        if(trackid!=null && status==null){
          await HelperMethods.fetchmyTrackInfo(trackid, context);
          if(currenttrackinfo!=null){
            showDialog(context: context,
                barrierDismissible: false,
                builder:(BuildContext context)=> NotificationDialogManual(currenttrackinfo!));
          }
+        }else{
+          await HelperMethods.fetchmyTrackInfo(trackid!, context);
+          if(currenttrackinfo!=null){
+            showDialog(context: context,
+                barrierDismissible: false,
+                builder:(BuildContext context)=> AlarmDialogManual(currenttrackinfo!));
+          }
         }
         AwesomeNotifications().createNotificationFromJsonData(message.data);
         print('Message also contained a notification: ${notification}');

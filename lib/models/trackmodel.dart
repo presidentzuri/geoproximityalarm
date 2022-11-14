@@ -23,6 +23,7 @@ class MyTrackUser{
   String? status;
   String? tracker_id;
   String? tracked_id;
+  String? sendtime;
   MyTrackUser({this.distance,this.location,this.imgUrl,this.userName,this.status,this.placeName,this.tracker_id});
 
   MyTrackUser.fromSnapshot(DocumentSnapshot snapshot){
@@ -34,6 +35,7 @@ class MyTrackUser{
    placeName=snapshot.get('place');
    tracker_id=snapshot.get('tracker_id');
    tracked_id=snapshot.get('tracked_id');
+   sendtime=snapshot.get('send_time');
    id=snapshot.id;
 
   }

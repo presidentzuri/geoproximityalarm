@@ -214,7 +214,8 @@ class CustomSearchDelegate extends SearchDelegate {
                                 currentPosition!.longitude),
                             "status": "pending",
                             "tracked_id": user.id,
-                            "tracker_id": users?.uid
+                            "tracker_id": users?.uid,
+                            "send_time":null
                           }).then((value) {
                             docid = value.id;
                           });
